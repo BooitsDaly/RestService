@@ -1,0 +1,11 @@
+
+<web-app>
+    <servlet>
+        <display-name>RestService</display-name>
+        <servlet-name>service.ApplicationConfig</servlet-name>
+        <init-param>
+            <param-name>javax.ws.rs.ApplicationConfig</param-name>
+            <param-value>service.ApplicationConfig</param-value>
+        </init-param>
+    </servlet>
+</web-app>
