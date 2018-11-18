@@ -5,32 +5,30 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 
 
-@Path("RestService")
+@Path("CompanyServices")
 public class Service {
     @Context
     @Path("/company")
     @DELETE
-    @QueryParam("text/plain")
     @Produces("application/json")
-    public String deleteAll(String companyName) {
+    public String deleteAll(@QueryParam("company") String companyName) {
         Buisness bl = new Buisness();
         return bl.deleteAllCompany(companyName);
     }
 
     @Path("/department")
     @GET
-    @QueryParam("text/plain")
     @Produces("application/json")
-    public String getDepartments(String deptJson) {
+    public String getDepartments(@QueryParam("company") String deptJson) {
         Buisness bl = new Buisness();
         return bl.getDepartmentsByName(deptJson);
     }
 
     @Path("/departments")
     @GET
-    @QueryParam("text/plain")
+    @Consumes("application/json")
     @Produces("application/json")
-    public String getAllDepartments(String company) {
+    public String getAllDepartments(@QueryParam("company") String company) {
         Buisness bl = new Buisness();
         return bl.getDepartmentsByCompany(company);
     }
@@ -39,115 +37,110 @@ public class Service {
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
-    public String insertDepartments(String deptJson){
+    public String insertDepartments(@FormParam("department") String deptJson){
         Buisness bl = new Buisness();
         return bl.insertDepartmentToData(deptJson);
     }
 
     @Path("department")
     @POST
-    @FormParam("application/json")
+    @Consumes("application/json")
     @Produces("application/json")
-    public String updateDepartment(String deptJson){
+    public String updateDepartment(@FormParam("department") String deptJson){
         Buisness bl = new Buisness();
         return bl.updateDepartmentToData(deptJson);
     }
 
     @Path("/department")
     @DELETE
-    @QueryParam("text/plain")
+    @Consumes("application/json")
     @Produces("application/json")
-    public String deleteDepartment(String deptJson){
+    public String deleteDepartment(@FormParam("department") String deptJson){
         Buisness bl = new Buisness();
         return bl.deleteDepartmentFromData(deptJson);
     }
 
     @Path("/employee")
     @GET
-    @QueryParam("text/plain")
     @Produces("application/json")
-    public String getEmployee(int emp_id){
+    public String getEmployee(@QueryParam("emp_id") int emp_id){
         Buisness bl = new Buisness();
         return bl.getEmployeeById(emp_id);
+    }
+
+    @Path("/employees")
+    @GET
+    @Consumes("application/json")
+    @Produces("application/json")
+    public String getAllEmployees(@QueryParam("company") String company){
+        Buisness bl = new Buisness();
+        return bl.getAllEmployees(company);
     }
 
     @Path("/employee")
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
-    public String getAllEmployees(String company){
-        Buisness bl = new Buisness();
-        return bl.getAllEmployees(company);
-    }
-
-    @Path("/employee")
-    @POST
-    @FormParam("application/json")
-    @Produces("application/json")
-    public String insertEmployee(String inJson){
+    public String insertEmployee(@QueryParam("employee") String inJson){
         Buisness bl = new Buisness();
         return bl.insertEmployeeasData(inJson);
     }
 
     @Path("/employee")
-    @DELETE
-    @QueryParam("text/plain")
+    @POST
+    @Consumes("application/json")
     @Produces("application/json")
-    public String updateEmployee(String inJson){
+    public String updateEmployee(@FormParam("employee") String inJson){
         Buisness bl = new Buisness();
         return bl.updateEmployeeInData(inJson);
     }
 
-    @Path("/timecard")
-    @GET
-    @QueryParam("text/plain")
+    @Path("/employee")
+    @DELETE
     @Produces("application/json")
-    public String deleteEmployee(int emp_id){
+    public String deleteEmployee(@QueryParam("emp_id") int emp_id){
         Buisness bl = new Buisness();
         return bl.deleteEmployeeInData(emp_id);
     }
 
-    @Path("/timecards")
+    @Path("/timecard")
     @GET
-    @QueryParam("text/plain")
     @Produces("application/json")
-    public String getTimecard(int timecard_id){
+    public String getTimecard(@QueryParam("timecard_id") int timecard_id){
         Buisness bl = new Buisness();
         return bl.getTimecardsInData(timecard_id);
     }
 
     @Path("/timecards")
     @GET
-    @Consumes("application/json")
     @Produces("application/json")
-    public String getAllTimecards(int emp_id){
+    public String getAllTimecards(@QueryParam("emp_id") int emp_id){
         Buisness bl = new Buisness();
         return bl.getAllTimecardsInData(emp_id);
     }
 
     @Path("/timecard")
     @PUT
-    @QueryParam("text/plain")
+    @Consumes("application/json")
     @Produces("application/json")
-    public String insertTimecard(String inJson){
+    public String insertTimecard(@FormParam("timecard") String inJson){
         Buisness bl = new Buisness();
         return bl.insertTimecardInData(inJson);
     }
 
     @Path("/timecard")
     @POST
-    @FormParam("application/json")
+    @Consumes("application/json")
     @Produces("application/json")
-    public String updateTimecard(String inJson){
+    public String updateTimecard(@FormParam("timecard") String inJson){
         Buisness bl = new Buisness();
         return bl.updateTimecardInData(inJson);
     }
 
     @Path("/timecard")
     @DELETE
-    @QueryParam("text/plain")
     @Produces("application/json")
-    public String deleteTimecard(int timecard_id){
+    public String deleteTimecard(@QueryParam("timecard_id") int timecard_id){
         Buisness bl = new Buisness();
         return bl.deleteTimecardfromData(timecard_id);
     }
